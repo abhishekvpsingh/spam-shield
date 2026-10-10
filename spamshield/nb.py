@@ -86,7 +86,8 @@ class NaiveBayes:
         contrib = {}  # Store one score per distinct known word.
         for w in set(self._tokens_in_vocab(text)):
             contrib[w] = self.log_likelihood(w, "spam") - self.log_likelihood(w, "ham")  # Positive favors spam; negative favors ham.
-        ranked = sorted(contrib.items(), key=lambda kv: kv[1], reverse=True)  # Sort (word, score) pairs from highest to lowest.
+        # sort by score, then alphabetically, so ties always come out in the same order
+        ranked = sorted(contrib.items(), key=lambda kv: (-kv[1], kv[0]))  # Highest score first; tied words sort alphabetically.
         spammy = [(w, s) for w, s in ranked if s > 0][:top_k]  # Strongest spam clues, e.g. [('prize', 2.1)].
         hammy = [(w, s) for w, s in ranked[::-1] if s < 0][:top_k]  # Strongest ham clues, e.g. [('dinner', -1.5)].
         return spammy, hammy  # Return two lists of (word, score) pairs.

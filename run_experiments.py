@@ -41,7 +41,6 @@ def split(df):
 def report(y_true, y_pred, name):
     tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=["ham", "spam"]).ravel()  # Correct ham, false alarms, missed spam, correct spam.
     p, r, f1, _ = precision_recall_fscore_support(y_true, y_pred, labels=["spam"], zero_division=0)  # Each spam metric is a one-value array.
-    # Return a dictionary of counts and scores; rates range from 0 to 1.
     return {"model": name, "TP": tp, "FP": fp, "FN": fn, "TN": tn,
             "precision": p[0], "recall": r[0], "F1": f1[0], "FPR": fp / (fp + tn),
             "accuracy": (tp + tn) / (tp + tn + fp + fn)}
