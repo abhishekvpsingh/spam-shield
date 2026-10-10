@@ -1,8 +1,5 @@
 # Error analysis: five misclassified test messages
 
-*First draft written with AI assistance (see the disclosure in the README). Owner: Abhishek Virendra Pratap Singh (Evaluation Lead). Every team member should read it and be able to defend each explanation in Q&A.*
-
-**Review status:** each explanation below was checked against `results/results.md` and `results/extras.md` by: ______ (initials) — edit anything you disagree with, then remove this line.
 
 Model: Naive Bayes from scratch, dev-tuned threshold 0.3132 (7 false positives, 11 missed spam on the test set).
 Word counts below are "number of training messages containing the word" (spam / ham), from `analysis_extras.py`.
